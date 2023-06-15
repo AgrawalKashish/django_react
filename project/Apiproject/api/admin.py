@@ -5,7 +5,7 @@ from .models import Article
 
 @admin.register(Article)
 class ArticleModel(admin.ModelAdmin):
-    list_display = ['id','title','description'] # this will display the fields in the admin page
-    list_filter = ['id','title','description'] # this will filter the fields in the admin page
-    class Meta:
-        model = Article
+    list_display = ['title','description'] # this will display the fields in the admin page
+    list_filter = ['title','description'] # this will filter the fields in the admin page
+    # class Meta:
+    #     model = Article
