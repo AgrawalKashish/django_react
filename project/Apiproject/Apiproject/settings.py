@@ -40,7 +40,22 @@ INSTALLED_APPS = [
     # added apps
     'api',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
+
+#added rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+    #if allowany is used inplace of IsAuthenticated then anyone can acces the api
+}
+# REST_FRAMEWORK = {
+   
+#    'DEFAULT_PERMISSION_CLASSES': ( 'rest_framework.permissions.IsAdminUser', ),
+   
+# }
+#help in authentication
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
