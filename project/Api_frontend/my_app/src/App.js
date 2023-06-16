@@ -1,12 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-import Hello from './components/Hello';
+
+import React from 'react';
+import Form from './components/form';
+import {Route, Routes, BrowserRouter } from 'react-router-dom'
+
+import Fragment from './components/fragment';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World!!</h1>
-      <Hello name="Kashish" lastname="Agrawal"/>
+    <div>
+      {/* <Form/> */}
+      <BrowserRouter>
+       <Routes>
+         <Route>
+           <Route exact path="/" element={ <Fragment/>} />
+           <Route exact path="/login" element={<Form />} />
+
+         </Route>
+       </Routes>
+     </BrowserRouter>
+     
     </div>
   );
 }
