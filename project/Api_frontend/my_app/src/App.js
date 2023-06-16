@@ -1,26 +1,44 @@
 
 import React from 'react';
-import Form from './components/form';
-import {Route, Routes, BrowserRouter } from 'react-router-dom'
-
-import Fragment from './components/fragment';
-
+import './App.css';
+import {useState, useEffect} from 'react';
 function App() {
-  return (
-    <div>
-      {/* <Form/> */}
-      <BrowserRouter>
-       <Routes>
-         <Route>
-           <Route exact path="/" element={ <Fragment/>} />
-           <Route exact path="/login" element={<Form />} />
+  const [articles, setArticles] = useState([])
 
-         </Route>
-       </Routes>
-     </BrowserRouter>
-     
+  useEffect(()=>{
+    fetch('http://127.0.0.1:8000/api/articles/',{
+    'method': 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Token 563cbb137888efeb519bc121bd6192957d6e5884',
+    }
+  })
+  .then(res=>res.json())
+  .then(data=>setArticles(data))
+  .catch(err=>console.log(err))
+}, [])
+
+  return (
+    <div className='App'>
+     <h1>APP</h1>
+     {articles.map(article =>{
+      return (
+        <div key= {article.id}> 
+            
+            <h2>{article.title}</h2>
+            <p>{article.description}</p>
+        </div>
+    
+      )
+     })}
     </div>
   );
 }
 
 export default App;
+/*
+usestate
+usecontext
+useeffect
+usereducer
+*/

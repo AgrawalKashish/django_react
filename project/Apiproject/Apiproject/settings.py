@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 #added rest framework settings
@@ -60,12 +61,18 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+     "corsheaders.middleware.CorsMiddleware", #added corsheaders
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS= [
+   "http://localhost:3001",
+]
+
 
 ROOT_URLCONF = 'Apiproject.urls'
 
