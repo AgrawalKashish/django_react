@@ -126,13 +126,13 @@ from rest_framework.permissions import IsAuthenticated
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset =Article.objects.all()
     serializer_class = ArticleSerializer
+    permission_classes = [IsAuthenticated] #setting main bhi add krsakte hai
     authentication_classes = [TokenAuthentication]
-    permission_classes = IsAuthenticated, #setting main bhi add krsakte hai
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
+    
 
 # function based views
 # @api_view(['GET', 'PUT', 'DELETE'])

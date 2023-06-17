@@ -5,17 +5,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState, useEffect} from 'react';
 import ArticleList from './components/ArticleList';
 import Form from './components/form';
-
+import {useCookies, removeCookies} from 'react-cookie'
+import {useNavigate} from 'react-router-dom'
 function App() {
   const [articles, setArticles] = useState([])
   const [editarticles, setEditArticles] = useState(null)
-
+  const [token, setToken, removeToken] = useCookies(['mytoken'])
+  let navigate = useNavigate()
   useEffect(()=>{
     fetch('http://127.0.0.1:8000/api/articles/',{
     'method': 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Token 563cbb137888efeb519bc121bd6192957d6e5884',
+      'Authorization': `Token ${token['mytoken']}`,
     }
   })
   .then(res=>res.json())
@@ -53,6 +55,15 @@ function App() {
   const articleForm = () =>{
     setEditArticles({title:'', description:''})
   }
+  
+
+  const logoutBtn = () =>{
+    removeToken(['mytoken'])
+  }
+
+  useEffect(()=>{
+    if(!token['mytoken']) navigate('/')
+  },[token])
 
   const insertedInformation = (article) =>{
     const new_article = [...articles, article]
@@ -63,11 +74,14 @@ function App() {
     
       
       <div className='row'>
-        <div className='col-md-6 offset-md-3'>
+        <div className='col'>
             <h1>APP</h1>
         </div>
-        <div>
+        <div  className='col-md-3'>
           <button onClick={articleForm} className='btn btn-primary'>Add Article</button>
+        </div>
+        <div  className='col-md-6'>
+          <button onClick={logoutBtn} className='btn btn-primary'>LogOut</button>
         </div>
       </div>
       <ArticleList articles={articles} editBtn= {editBtn} deleteBtn={deleteBtn}/>

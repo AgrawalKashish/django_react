@@ -1,16 +1,18 @@
 import React from 'react'
 import './css/articlelist.css'
 import Apiservice from './Apiservice';
+import {useCookies} from 'react-cookie'
 
 function ArticleList(props) {
 
+    const [token] = useCookies(['mytoken'])
     const editBtn = (article) =>{
         console.log(article)
         props.editBtn(article)
     }
 
     const deleteBtn = (article) =>{
-        Apiservice.DeleteArticle(article.id)
+        Apiservice.DeleteArticle(article.id, token['mytoken'])
         .then(()=> props.deleteBtn(article))
         .catch(err=>console.log(err))
         

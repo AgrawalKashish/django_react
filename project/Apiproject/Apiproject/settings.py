@@ -45,12 +45,13 @@ INSTALLED_APPS = [
 ]
 
 #added rest framework settings
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ]
-    #if allowany is used inplace of IsAuthenticated then anyone can acces the api
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+        
+#     ]
+#     #if allowany is used inplace of IsAuthenticated then anyone can acces the api
+# }
 # REST_FRAMEWORK = {
    
 #    'DEFAULT_PERMISSION_CLASSES': ( 'rest_framework.permissions.IsAdminUser', ),
@@ -71,6 +72,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS= [
    "http://localhost:3001",
+   "http://localhost:3000",
 ]
 
 
