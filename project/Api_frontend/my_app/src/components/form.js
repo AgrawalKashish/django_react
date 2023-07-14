@@ -33,6 +33,7 @@ function Form(props) {
                  value={title} onChange = {e =>setTitle(e.target.value) }/>
                 <label htmlFor='description' className='form-label'>Description</label>
                 <textarea type='text' className='form-control' value={description} onChange = {e =>setDescription(e.target.value) }/>
+     
                 <br></br>
                 {
                     props.article.id ?  <button className='btn btn-success'
